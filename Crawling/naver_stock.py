@@ -10,4 +10,3 @@ for tr in soup.select("table.type_5 tr"):
         continue
     title = tr.select("a.tltle")[0].get_text(strip=True)
     print(title)
-a
