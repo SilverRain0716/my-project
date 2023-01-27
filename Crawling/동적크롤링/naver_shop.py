@@ -6,15 +6,21 @@ import time
 
 options = webdriver.ChromeOptions()
 options.add_argument("window-size=1000,1000")
-options.add_argument("no-sandbox") # 먹통이 되었을 때 사용
-# options.add_argument("headless") # 창을 안뜨게 하는 것
+options.add_argument("no-sandbox") 
 
 chrome = webdriver.Chrome("Crawling/동적크롤링/chromedriver.exe", options=options)
 chrome.get("https://shopping.naver.com/")
-WebDriverWait(chrome, 10).until(EC.presence_of_element_located(By.CSS_SELECTOR, "input[name=query]"))
+wait = WebDriverWait(chrome, 10)
+
+def find(wait, css_selector):
+    return wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, css_selector)))
+
+search = find(wait, "input[name=search]")
+search.send_keys("아이폰 케이스")
+time.sleep(4)
+
+button = find(wait, "a._searchInput_button_search_h79Dk")
+button.click()
+time.sleep(4)
+
 chrome.close()
-
-
-# chrome.back()
-# chrome.forward()
-# time.sleep(10)
