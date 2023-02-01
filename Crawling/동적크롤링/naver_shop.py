@@ -15,11 +15,11 @@ wait = WebDriverWait(chrome, 10)
 def find(wait, css_selector):
     return wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, css_selector)))
 
-search = find(wait, "input[name=search]")
+search = find(wait, "input[class=_searchInput_search_text_fSuJ6]")
 search.send_keys("아이폰 케이스")
 time.sleep(4)
 
-button = find(wait, "a._searchInput_button_search_h79Dk")
+button = find(wait, "._searchInput_button_search_h79Dk")
 button.click()
 time.sleep(4)
 
